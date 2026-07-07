@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>조찬휘 포트폴리오 | Civil Engineering</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f2f8f9',
+              100: '#e5f0f2',
+              500: '#0d7c8a', // 자연과 인프라의 조화를 상징하는 딥 틸(Teal) 그린
+              600: '#0b646f',
+              700: '#084d56',
+              800: '#06393f',
+              900: '#031c20',
+            },
+            accent: {
+              500: '#d97706', // 지반/안전을 상징하는 골드 엠버(Amber) 포인트 컬러
+              600: '#b45309'
+            }
+          },
+          fontFamily: {
+            sans: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    /* 템플릿의 깊고 웅장한 분위기를 담은 백그라운드 그라디언트 노이즈 효과 */
+    .hero-bg {
+      background: linear-gradient(rgba(10, 25, 30, 0.85), rgba(3, 15, 20, 0.95)), 
+                  url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    /* 스크롤 다운 인디케이터 라인 애니메이션 */
+    @keyframes scrollLine {
+      0% { transform: scaleY(0); transform-origin: top; }
+      50% { transform: scaleY(1); transform-origin: top; }
+      51% { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+    .scroll-line::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 1px;
+      height: 60px;
+      background: #d97706;
+      animation: scrollLine 2s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-[#fcfdfd] text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300">
+
+  <!-- Header & Navigation -->
+  <header class="fixed top-0 left-0 w-full bg-white/90 dark:bg-slate-950/90 backdrop-blur-md z-50 border-b border-slate-100 dark:border-slate-900 transition-colors">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="#" class="text-lg font-bold tracking-widest text-brand-700 dark:text-brand-500 flex items-center space-x-2">
+        <span class="border-l-4 border-accent-500 pl-2">CHANHWI JO</span>
+      </a>
+      
+      <!-- Desktop Navigation (템플릿 스타일의 정갈한 폰트와 간격) -->
+      <nav class="hidden md:flex space-x-10 text-[14px] font-semibold tracking-wider text-slate-600 dark:text-slate-300">
+        <a href="#about" class="hover:text-brand-500 dark:hover:text-brand-400 transition-colors">회사소개 스타일 프로필</a>
+        <a href="#skills" class="hover:text-brand-500 dark:hover:text-brand-400 transition-colors">전문 기술</a>
+        <a href="#projects" class="hover:text-brand-500 dark:hover:text-brand-400 transition-colors">프로젝트 실적</a>
+        <a href="#activities" class="hover:text-brand-500 dark:hover:text-brand-400 transition-colors">동향 및 대외 활동</a>
+        <a href="#contact" class="hover:text-brand-500 dark:hover:text-brand-400 transition-colors">문의하기</a>
+      </nav>
+
+      <!-- Right Controls -->
+      <div class="flex items-center space-x-4">
+        <!-- Dark Mode Toggle -->
+        <button id="theme-toggle" class="p-2 rounded-lg bg-slate-50 dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:ring-2 hover:ring-brand-500 transition-all" aria-label="Toggle Dark/Light Mode">
+          <i id="theme-icon" class="fa-solid fa-moon"></i>
+        </button>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-900" aria-label="Toggle Menu">
+          <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-900 px-6 pt-2 pb-6 space-y-2">
+      <a href="#about" class="block py-2 text-sm font-semibold hover:text-brand-500">프로필</a>
+      <a href="#skills" class="block py-2 text-sm font-semibold hover:text-brand-500">전문 기술</a>
+      <a href="#projects" class="block py-2 text-sm font-semibold hover:text-brand-500">프로젝트 실적</a>
+      <a href="#activities" class="block py-2 text-sm font-semibold hover:text-brand-500">동향 및 활동</a>
+      <a href="#contact" class="block py-2 text-sm font-semibold hover:text-brand-500">문의하기</a>
+    </div>
+  </header>
+
+  <!-- Hero Section (템플릿의 Green Innovation 감성의 대형 비주얼 배너) -->
+  <section class="hero-bg relative min-h-screen flex items-center justify-center text-center px-4 pt-16">
+    <div class="max-w-4xl mx-auto space-y-8 z-10">
+      <div class="space-y-3">
+        <span class="text-accent-500 dark:text-accent-500 font-bold tracking-widest text-sm uppercase block">
+          Smart Infrastructure & Environment
+        </span>
+        <div class="w-16 h-0.5 bg-accent-500 mx-auto my-4"></div>
+      </div>
+      
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+        지속 가능한 토목 기술로<br>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-amber-300">더 가치 있는 내일</span>을 만듭니다.
+      </h1>
+      
+      <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto font-light leading-relaxed">
+        안녕하세요, 엔지니어 조찬휘입니다. 안전 진단 및 친환경 스마트 인프라 솔루션을 위해 공간 데이터와 공학 설계의 완벽한 융합을 실현합니다.
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-4 pt-4">
+        <a href="#projects" class="px-8 py-3.5 bg-brand-500 hover:bg-brand-600 text-white font-medium tracking-wider rounded-none shadow-lg transition-all text-sm">
+          실적 사례 보기 <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+        </a>
+        <a href="#contact" class="px-8 py-3.5 bg-transparent hover:bg-white hover:text-slate-900 text-white font-medium tracking-wider rounded-none border border-white/50 transition-all text-sm">
+          온라인 문의
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll Down Indicator (템플릿 우측의 세련된 라인 차용) -->
+    <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center">
+      <span class="text-[11px] uppercase tracking-widest text-slate-400 mb-2">Scroll Down</span>
+      <div class="relative w-1 h-[60px] scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-24 bg-white dark:bg-slate-950">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+        <!-- Left Text -->
+        <div class="lg:col-span-6 space-y-8">
+          <div class="space-y-2">
+            <span class="text-accent-500 font-bold tracking-widest text-xs uppercase block">ABOUT CHJO</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">지속 가능한 환경을 위한<br>첨단 설계 기술의 새로운 기준</h2>
+            <div class="h-1 w-12 bg-brand-500 mt-4"></div>
+          </div>
+          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+            토목공학 학부 과정 동안 습득한 구조 및 수자원 설계 기술에 현대적인 디지털 솔루션을 결합했습니다. 수치 계산의 안전성을 바탕으로 지속가능한 공간 정보 인프라 환경을 구축하는 실무 지향형 핵심 인재로 거듭나고 있습니다.
+          </p>
+
+          <div class="grid grid-cols-2 gap-8 pt-4 border-t border-slate-100 dark:border-slate-900">
+            <div>
+              <h4 class="text-sm font-bold text-slate-400 uppercase tracking-widest">Name / Contact</h4>
+              <p class="mt-2 text-lg font-bold">조찬휘 (Chanhwi Jo)</p>
+              <p class="text-sm text-slate-500 mt-1">chjo@university.ac.kr</p>
+            </div>
+            <div>
+              <h4 class="text-sm font-bold text-slate-400 uppercase tracking-widest">Education</h4>
+              <p class="mt-2 text-lg font-bold">한국대학교 토목공학과</p>
+              <p class="text-sm text-slate-500 mt-1">2027년 2월 졸업 예정 (학점 3.85 / 4.5)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Visual (템플릿의 세련된 현대 빌딩 및 측량 감성의 카드식 레이아웃) -->
+        <div class="lg:col-span-6 bg-slate-50 dark:bg-slate-900 p-8 sm:p-12 border border-slate-100 dark:border-slate-800">
+          <h3 class="text-xl font-extrabold mb-8 text-brand-600 dark:text-brand-400 flex items-center">
+            <span class="w-1.5 h-6 bg-accent-500 mr-2.5 block"></span>보유 핵심 경쟁력 및 자격
+          </h3>
+          <ul class="space-y-6">
+            <li class="flex items-start space-x-4">
+              <div class="flex-shrink-0 w-10 h-10 bg-brand-500/10 text-brand-600 dark:text-brand-400 flex items-center justify-center text-md">
+                <i class="fa-solid fa-file-signature"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-base text-slate-900 dark:text-white">자격증 보유 현황</h4>
+                <p class="text-sm text-slate-500 mt-1">토목기사 필기 합격 · CAD실무능력평가(CAT) 1급 · 한능검 1급</p>
+              </div>
+            </li>
+            <li class="flex items-start space-x-4">
+              <div class="flex-shrink-0 w-10 h-10 bg-brand-500/10 text-brand-600 dark:text-brand-400 flex items-center justify-center text-md">
+                <i class="fa-solid fa-calculator"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-base text-slate-900 dark:text-white">고성능 구조 해석</h4>
+                <p class="text-sm text-slate-500 mt-1">MIDAS Civil 및 SAP2000 모델링을 통한 하중 분포 최적화 및 강도 계산 검증 가능</p>
+              </div>
+            </li>
+            <li class="flex items-start space-x-4">
+              <div class="flex-shrink-0 w-10 h-10 bg-brand-500/10 text-brand-600 dark:text-brand-400 flex items-center justify-center text-md">
+                <i class="fa-solid fa-map-location"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-base text-slate-900 dark:text-white">공간정보시스템(GIS) 융합</h4>
+                <p class="text-sm text-slate-500 mt-1">QGIS 기반 침수 취약 공간 예측 및 표고 변화 데이터(DEM) 가공 및 시각화 강점</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Skills Section -->
+  <section id="skills" class="py-24 bg-slate-50 dark:bg-slate-900/40 border-t border-b border-slate-100 dark:border-slate-900">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-20">
+        <span class="text-accent-500 font-bold tracking-widest text-xs uppercase block">ENGINEERING SOFTWARE</span>
+        <h2 class="text-3xl font-extrabold tracking-tight mt-2">전문 기술 스택</h2>
+        <div class="h-1 w-12 bg-brand-500 mx-auto mt-4"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <!-- Drafting & BIM -->
+        <div class="space-y-6">
+          <div class="flex items-center space-x-3 pb-4 border-b border-slate-200 dark:border-slate-800">
+            <i class="fa-solid fa-pen-ruler text-2xl text-brand-500"></i>
+            <h3 class="text-lg font-bold">도면 및 모델링 (Drafting)</h3>
+          </div>
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between text-sm font-semibold mb-1">
+                <span>AutoCAD</span>
+                <span>90%</span>
+              </div>
+              <div class="w-full bg-slate-200 dark:bg-slate-800 h-1.5">
+                <div class="bg-brand-500 h-full" style="width: 90%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-sm font-semibold mb-1">
+                <span>Revit (BIM)</span>
+                <span>65%</span>
+              </div>
+              <div class="w-full bg-slate-200 dark:bg-slate-800 h-1.5">
+                <div class="bg-brand-500 h-full" style="width: 65%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Analysis Software -->
+        <div class="space-y-6">
+          <div class="flex items-center space-x-3 pb-4 border-b border-slate-200 dark:border-slate-800">
+            <i class="fa-solid fa-chart-bar text-2xl text-brand-500"></i>
+            <h3 class="text-lg font-bold">수치해석 및 역학 분석</h3>
+          </div>
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between text-sm font-semibold mb-1">
+                <span>MIDAS Civil</span>
+                <span>80%</span>
+              </div>
+              <div class="w-full bg-slate-200 dark:bg-slate-800 h-1.5">
+                <div class="bg-brand-500 h-full" style="width: 80%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-sm font-semibold mb-1">
+                <span>SAP2000</span>
+                <span>70%</span>
+              </div>
+              <div class="w-full bg-slate-200 dark:bg-slate-800 h-1.5">
+                <div class="bg-brand-500 h-full" style="width: 70%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Data & Spatial GIS -->
+        <div class="space-y-6">
+          <div class="flex items-center space-x-3 pb-4 border-b border-slate-200 dark:border-slate-800">
+            <i class="fa-solid fa-layer-group text-2xl text-brand-500"></i>
+            <h3 class="text-lg font-bold">공간 분석 및 데이터</h3>
+          </div>
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between text-sm font-semibold mb-1">
+                <span>QGIS / ArcGIS</span>
+                <span>75%</span>
+              </div>
+              <div class="w-full bg-slate-200 dark:bg-slate-800 h-1.5">
+                <div class="bg-brand-500 h-full" style="width: 75%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-sm font-semibold mb-1">
+                <span>Python (데이터 가공)</span>
+                <span>60%</span>
+              </div>
+              <div class="w-full bg-slate-200 dark:bg-slate-800 h-1.5">
+                <div class="bg-brand-500 h-full" style="width: 60%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section (템플릿의 우아한 대칭 교차 그리드 스타일 완벽 커스텀) -->
+  <section id="projects" class="py-24 bg-white dark:bg-slate-950">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-24">
+        <span class="text-accent-500 font-bold tracking-widest text-xs uppercase block">ENGINEERING PORTFOLIO</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-2">연구 및 설계 프로젝트 실적</h2>
+        <div class="h-1 w-12 bg-brand-500 mx-auto mt-4"></div>
+      </div>
+
+      <!-- Alternating Rows (좌우 교차형 템플릿 방식) -->
+      <div class="space-y-32">
+        
+        <!-- Project 1 (Left Image, Right Content) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div class="lg:col-span-6 relative group overflow-hidden bg-slate-900 border border-slate-800 h-80 flex flex-col justify-center items-center text-center p-8">
+            <div class="absolute inset-0 bg-gradient-to-br from-slate-900/60 to-brand-900/90 z-0"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px] opacity-10"></div>
+            <div class="z-10 text-white space-y-4">
+              <i class="fa-solid fa-bridge text-6xl text-amber-500"></i>
+              <h4 class="font-bold text-xl">PSC 거더교 상부구조 설계 해석</h4>
+            </div>
+          </div>
+          <div class="lg:col-span-6 space-y-6">
+            <span class="text-accent-500 font-bold tracking-widest text-xs uppercase">Project 01 / 구조 및 거더설계</span>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">MIDAS Civil 기반 PSC 1등교 교량 거더 최적설계</h3>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm sm:text-base">
+              지간 45m의 포스트텐션 PSC 거더교를 설계 모델로 선정, 극한 한계 상태 및 사용성 한계상태(LRFD 설계 기준)에 맞추어 보강재 배치와 텐던 압축력을 역학 시뮬레이션으로 규명하였습니다. 구조 역학적 허용 응력 범위 내 단면 두께를 도출하여 안정성을 극대화한 경험이 있습니다.
+            </p>
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="px-3 py-1 bg-slate-100 dark:bg-slate-900 text-xs font-semibold">MIDAS Civil</span>
+              <span class="px-3 py-1 bg-slate-100 dark:bg-slate-900 text-xs font-semibold">AutoCAD</span>
+              <span class="px-3 py-1 bg-slate-100 dark:bg-slate-900 text-xs font-semibold">도로교설계기준</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 (Right Image, Left Content) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div class="lg:col-span-6 lg:order-2 relative group overflow-hidden bg-slate-900 border border-slate-800 h-80 flex flex-col justify-center items-center text-center p-8">
+            <div class="absolute inset-0 bg-gradient-to-br from-slate-900/60 to-teal-900/90 z-0"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px] opacity-10"></div>
+            <div class="z-10 text-white space-y-4">
+              <i class="fa-solid fa-droplet text-6xl text-teal-400"></i>
+              <h4 class="font-bold text-xl">QGIS 기반 침수 취약 공간 해독</h4>
+            </div>
+          </div>
+          <div class="lg:col-span-6 lg:order-1 space-y-6">
+            <span class="text-accent-500 font-bold tracking-widest text-xs uppercase">Project 02 / 수자원공학 및 도시 방재</span>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">공간 빅데이터 융합 최적 배수 구조망 설계</h3>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm sm:text-base">
+              기후변화 강우빈도 증가량을 수치적으로 변환하여 타깃 도심 지형의 수치표고모델(DEM)에 연계 시뮬레이션을 수행했습니다. 국지성 침수 위험을 공간적으로 정확하게 정량화함으로써, 노후 우수 배수 배관망의 보강 우선 구역을 QGIS 공간 통계 분석 기법으로 제시하였습니다.
+            </p>
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="px-3 py-1 bg-slate-100 dark:bg-slate-900 text-xs font-semibold">QGIS</span>
+              <span class="px-3 py-1 bg-slate-100 dark:bg-slate-900 text-xs font-semibold">EPA-SWMM</span>
+              <span class="px-3 py-1 bg-slate-100 dark:bg-slate-900 text-xs font-semibold">수리수문 해석</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 (Left Image, Right Content) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div class="lg:col-span-6 relative group overflow-hidden bg-slate-900 border border-slate-800 h-80 flex flex-col justify-center items-center text-center p-8">
+            <div class="absolute inset-0 bg-gradient-to-br from-slate-900/60 to-purple-900/90 z-0"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px] opacity-10"></div>
+            <div class="z-10 text-white space-y-4">
+              <i class="fa-solid fa-mountain-city text-6xl text-purple-400"></i>
+              <h4 class="font-bold text-xl">캡스톤디자인: 조립식 콘크리트 옹벽</h4>
+            </div>
+          </div>
+          <div class="lg:col-span-6 space-y-6">
+            <span class="text-accent-500 font-bold tracking-widest text-xs uppercase">Project 03 / 지반공학 및 캡스톤</span>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">사면 안정화를 위한 지속가능형 프리캐스트(PC) 조립 옹벽 공법</h3>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm sm:text-base">
+              구조적 사면 붕괴 원인이 되는 토압 거동 메커니즘을 극한 평형 조건 분석 모델로 계산, 경량 조립식 프리캐스트 블록 사면 안정을 입증하였습니다. 공사 중 현장 안전 위협 지연 요소를 35% 단축하는 공법으로 아이디어를 도출하여, 교내 종합학술제 동상을 차지했습니다.
+            </p>
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="px-3 py-1 bg-slate-100 dark:bg-slate-900 text-xs font-semibold">GeoStudio (SLOPE/W)</span>
+              <span class="px-3 py-1 bg-slate-100 dark:bg-slate-900 text-xs font-semibold">3D Modeling</span>
+              <span class="px-3 py-1 bg-slate-100 dark:bg-slate-900 text-xs font-semibold">사면안정성평가</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Activities Section (템플릿의 정밀한 Notice 게시판 형식과 연계한 미니멀 타임라인) -->
+  <section id="activities" class="py-24 bg-slate-50 dark:bg-slate-900/40 border-t border-b border-slate-100 dark:border-slate-900">
+    <div class="max-w-5xl mx-auto px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-20">
+        <span class="text-accent-500 font-bold tracking-widest text-xs uppercase block">ACTIVITIES & INFRA-NEWS</span>
+        <h2 class="text-3xl font-extrabold tracking-tight mt-2">Notice 스타일 대외 활동 및 경력</h2>
+        <div class="h-1 w-12 bg-brand-500 mx-auto mt-4"></div>
+      </div>
+
+      <!-- Notice List Layout (템플릿 Notice 완벽 반영) -->
+      <div class="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-900 divide-y divide-slate-100 dark:divide-slate-900">
+        
+        <!-- Notice Item 1 -->
+        <div class="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-slate-50 dark:hover:bg-slate-900/30 transition-all">
+          <div class="flex items-start gap-4 sm:gap-8">
+            <div class="flex-shrink-0 text-center">
+              <span class="text-2xl font-black text-brand-500 block">30</span>
+              <span class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">2026.07</span>
+            </div>
+            <div class="space-y-1">
+              <div class="flex items-center space-x-2">
+                <span class="px-2 py-0.5 bg-brand-100 dark:bg-brand-950 text-brand-700 dark:text-brand-300 text-[10px] font-bold">건설현장 실습</span>
+              </div>
+              <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white">○○건설 토목 설계 보조 현장 인턴 과정 이수</h3>
+              <p class="text-sm text-slate-500">인프라 도로공사 구간 측량 정합성 감리 검토 및 도면 물량 산출서 조력</p>
+            </div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-slate-300 text-xs hidden sm:block"></i>
+        </div>
+
+        <!-- Notice Item 2 -->
+        <div class="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-slate-50 dark:hover:bg-slate-900/30 transition-all">
+          <div class="flex items-start gap-4 sm:gap-8">
+            <div class="flex-shrink-0 text-center">
+              <span class="text-2xl font-black text-brand-500 block">18</span>
+              <span class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">2025.09</span>
+            </div>
+            <div class="space-y-1">
+              <div class="flex items-center space-x-2">
+                <span class="px-2 py-0.5 bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 text-[10px] font-bold">학술 동아리</span>
+              </div>
+              <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white">학부 구조 학술 연구동아리 '구조분석회' 학술부장</h3>
+              <p class="text-sm text-slate-500">구조 해석 튜토리얼 워크숍 진행 및 하중 대항 구조 교량 경연 은상 주도</p>
+            </div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-slate-300 text-xs hidden sm:block"></i>
+        </div>
+
+        <!-- Notice Item 3 -->
+        <div class="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-slate-50 dark:hover:bg-slate-900/30 transition-all">
+          <div class="flex items-start gap-4 sm:gap-8">
+            <div class="flex-shrink-0 text-center">
+              <span class="text-2xl font-black text-brand-500 block">05</span>
+              <span class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">2024.03</span>
+            </div>
+            <div class="space-y-1">
+              <div class="flex items-center space-x-2">
+                <span class="px-2 py-0.5 bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 text-[10px] font-bold">국민 서포터즈</span>
+              </div>
+              <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white">국토교통부 대학생 스마트 도시 서포터즈 활동</h3>
+              <p class="text-sm text-slate-500">차세대 지능형 교통 및 스마트 도로 안전 자율 인프라 최우수 기자단 표창</p>
+            </div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-slate-300 text-xs hidden sm:block"></i>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section (레퍼런스 디자인처럼 정결하고 와이드한 레이아웃 설계) -->
+  <section id="contact" class="py-24 bg-white dark:bg-slate-950">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-accent-500 font-bold tracking-widest text-xs uppercase block">ONLINE INQUIRY</span>
+        <h2 class="text-3xl font-extrabold tracking-tight mt-2">업무 제안 및 연락하기</h2>
+        <div class="h-1 w-12 bg-brand-500 mx-auto mt-4"></div>
+        <p class="text-slate-500 text-sm mt-4">
+          신입 채용 제안 및 협업을 위한 논의는 언제나 감사히 받고 있습니다. 신속하게 답변 드리겠습니다.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 max-w-5xl mx-auto">
+        <!-- Contact Info -->
+        <div class="md:col-span-5 space-y-6">
+          <div class="p-6 bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-900 flex items-center space-x-4">
+            <div class="w-12 h-12 bg-brand-500 text-white flex items-center justify-center text-xl">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-sm text-slate-400">EMAIL</h4>
+              <p class="text-base font-bold text-slate-800 dark:text-white mt-1">chjo@university.ac.kr</p>
+            </div>
+          </div>
+
+          <div class="p-6 bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-900 flex items-center space-x-4">
+            <div class="w-12 h-12 bg-brand-500 text-white flex items-center justify-center text-xl">
+              <i class="fa-solid fa-phone"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-sm text-slate-400">PHONE</h4>
+              <p class="text-base font-bold text-slate-800 dark:text-white mt-1">010-1234-5678</p>
+            </div>
+          </div>
+
+          <div class="p-6 bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-900 flex items-center space-x-4">
+            <div class="w-12 h-12 bg-brand-500 text-white flex items-center justify-center text-xl">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-sm text-slate-400">LOCATION</h4>
+              <p class="text-base font-bold text-slate-800 dark:text-white mt-1">서울특별시 마포구 (수도권 희망)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form (직관적인 템플릿의 입력 디자인 기조 반영) -->
+        <div class="md:col-span-7 bg-slate-50 dark:bg-slate-900/40 p-8 border border-slate-200 dark:border-slate-950">
+          <form id="contact-form" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="name" class="block text-xs font-bold uppercase text-slate-400 mb-1">성함 / 회사명</label>
+                <input type="text" id="name" required class="w-full px-4 py-3 border border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-950 focus:ring-1 focus:ring-brand-500 focus:outline-none transition-all text-sm rounded-none">
+              </div>
+              <div>
+                <label for="email" class="block text-xs font-bold uppercase text-slate-400 mb-1">이메일 주소</label>
+                <input type="email" id="email" required class="w-full px-4 py-3 border border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-950 focus:ring-1 focus:ring-brand-500 focus:outline-none transition-all text-sm rounded-none">
+              </div>
+            </div>
+            <div>
+              <label for="message" class="block text-xs font-bold uppercase text-slate-400 mb-1">문의 내용</label>
+              <textarea id="message" rows="5" required class="w-full px-4 py-3 border border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-950 focus:ring-1 focus:ring-brand-500 focus:outline-none transition-all text-sm rounded-none" placeholder="내용을 구체적으로 기재해주시면 더욱 원활한 상담이 가능합니다."></textarea>
+            </div>
+            <button type="submit" class="w-full py-4 bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs uppercase tracking-widest transition-all rounded-none flex items-center justify-center space-x-2">
+              <i class="fa-solid fa-paper-plane"></i>
+              <span>전송하기</span>
+            </button>
+          </form>
+          <div id="alert-box" class="hidden mt-4 p-4 bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 flex items-center space-x-2 text-sm">
+            <i class="fa-solid fa-circle-check"></i>
+            <span>메시지가 성공적으로 입력되었습니다. 신속하게 메일로 연락드리겠습니다!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer (템플릿의 깊고 웅장한 블랙 푸터 톤 재현) -->
+  <footer class="bg-slate-950 text-slate-400 border-t border-slate-900 py-12 transition-colors">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between text-xs space-y-6 md:space-y-0">
+      <div class="flex items-center space-x-4">
+        <span class="text-sm font-extrabold tracking-widest text-white border-l-2 border-accent-500 pl-2">CHANHWI JO</span>
+        <span>|</span>
+        <span>토목공학과 엔지니어링 포트폴리오</span>
+      </div>
+      <p class="text-slate-500 text-center md:text-right">
+        &copy; 2026 Chanhwi Jo. All Rights Reserved. Designed for civil and smart infrastructure excellence.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // --- Mobile Menu Toggle ---
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // --- Dark/Light Theme Switcher ---
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+
+    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+      themeIcon.classList.replace('fa-moon', 'fa-sun');
+    } else {
+      document.documentElement.classList.remove('dark');
+      themeIcon.classList.replace('fa-sun', 'fa-moon');
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('color-theme', 'light');
+        themeIcon.classList.replace('fa-sun', 'fa-moon');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('color-theme', 'dark');
+        themeIcon.classList.replace('fa-moon', 'fa-sun');
+      }
+    });
+
+    // --- Form Submission Handling ---
+    const contactForm = document.getElementById('contact-form');
+    const alertBox = document.getElementById('alert-box');
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alertBox.classList.remove('hidden');
+      contactForm.reset();
+      
+      setTimeout(() => {
+        alertBox.classList.add('hidden');
+      }, 5000);
+    });
+  </script>
+</body>
+</html>
